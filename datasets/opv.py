@@ -1,5 +1,6 @@
 import os
 import os.path as osp
+import shutil
 import pandas as pd
 from tqdm import tqdm
 import torch
@@ -38,12 +39,9 @@ class OPVHGraph(InMemoryDataset):
             final dataset. (default: :obj:`None`)
     """
 
-    raw_url0 = ('https://cscdata.nrel.gov/api/datasets/ad5d2c9a-af0a-4d72-b943-1e'
-                '433d5750d6/download/cf0c78ad-6356-495b-b233-3fa5e1cd4ee7')
-    raw_url1 = ('https://cscdata.nrel.gov/api/datasets/ad5d2c9a-af0a-4d72-b943-1e'
-                '433d5750d6/download/1222cfcb-db92-4fc8-a310-bfab74d9217f')
-    raw_url2 = ('https://cscdata.nrel.gov/api/datasets/ad5d2c9a-af0a-4d72-b943-1e'
-                '433d5750d6/download/3085f235-be59-4b7f-93a6-1ea0505d9fde')
+    raw_url0 = ('https://data.nrel.gov/system/files/236/1712697052-smiles_train.csv.gz')
+    raw_url1 = ('https://data.nrel.gov/system/files/236/1712697052-smiles_valid.csv.gz')
+    raw_url2 = ('https://data.nrel.gov/system/files/236/1712697052-smiles_test.csv.gz')
 
     def __init__(self, root, polymer=False, partition='train',
                  transform=None, pre_transform=None, pre_filter=None):
@@ -82,28 +80,31 @@ class OPVHGraph(InMemoryDataset):
 
     def download(self):
         print('Downloading OPV train dataset...')
-        download_url(self.raw_url0, self.raw_dir)
-        os.rename(osp.join(self.raw_dir, 'cf0c78ad-6356-495b-b233-3fa5e1cd4ee7'),
-                  osp.join(self.raw_dir, 'smiles_train.csv.gz'))
-        file_path = osp.join(self.raw_dir, 'smiles_train.csv.gz')
-        extract_gz(file_path, self.raw_dir)
-        os.unlink(file_path)
+        try:
+            download_url(self.raw_url0, self.raw_dir, filename='smiles_train.csv.gz')
+            file_path = osp.join(self.raw_dir, 'smiles_train.csv.gz')
+            extract_gz(file_path, self.raw_dir)
+            os.unlink(file_path)
+        except:
+            shutil.copy('datasets/raw/opv/smiles_train.csv', self.raw_dir)
 
         print('Downloading OPV valid dataset...')
-        download_url(self.raw_url1, self.raw_dir)
-        os.rename(osp.join(self.raw_dir, '1222cfcb-db92-4fc8-a310-bfab74d9217f'),
-                  osp.join(self.raw_dir, 'smiles_valid.csv.gz'))
-        file_path = osp.join(self.raw_dir, 'smiles_valid.csv.gz')
-        extract_gz(file_path, self.raw_dir)
-        os.unlink(file_path)
+        try:
+            download_url(self.raw_url1, self.raw_dir, filename='smiles_valid.csv.gz')
+            file_path = osp.join(self.raw_dir, 'smiles_valid.csv.gz')
+            extract_gz(file_path, self.raw_dir)
+            os.unlink(file_path)
+        except:
+            shutil.copy('datasets/raw/opv/smiles_valid.csv', self.raw_dir)
 
         print('Downloading OPV test dataset...')
-        download_url(self.raw_url2, self.raw_dir)
-        os.rename(osp.join(self.raw_dir, '3085f235-be59-4b7f-93a6-1ea0505d9fde'),
-                  osp.join(self.raw_dir, 'smiles_test.csv.gz'))
-        file_path = osp.join(self.raw_dir, 'smiles_test.csv.gz')
-        extract_gz(file_path, self.raw_dir)
-        os.unlink(file_path)
+        try:
+            download_url(self.raw_url2, self.raw_dir, filename='smiles_test.csv.gz')
+            file_path = osp.join(self.raw_dir, 'smiles_test.csv.gz')
+            extract_gz(file_path, self.raw_dir)
+            os.unlink(file_path)
+        except:
+            shutil.copy('datasets/raw/opv/smiles_test.csv', self.raw_dir)
 
     def compute_hgraph_data(self, df):
         # create hgraph data list from pd.DataFrame object
