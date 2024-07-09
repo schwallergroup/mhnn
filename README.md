@@ -87,16 +87,17 @@ This work was supported as part of NCCR Catalysis (grant number 180544), a Natio
 If you find our work useful, please consider citing it:
 ```bibtex
 @article{chen2024molecular,
-  title={Molecular hypergraph neural networks},
-  author={Chen, Junwu and Schwaller, Philippe},
-  journal={The Journal of Chemical Physics},
-  volume={160},
-  number={14},
-  year={2024},
-  publisher={Aip Publishing},
-  doi={10.1063/5.0193557},
-  url={https://doi.org/10.1063/5.0193557},
+    author = {Chen, Junwu and Schwaller, Philippe},
+    title = "{Molecular hypergraph neural networks}",
+    journal = {The Journal of Chemical Physics},
+    volume = {160},
+    number = {14},
+    pages = {144307},
+    year = {2024},
+    doi = {10.1063/5.0193557},
+    url = {https://doi.org/10.1063/5.0193557},
 }
+
 ```
 
 ## 📫 Contact
