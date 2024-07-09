@@ -1,6 +1,7 @@
 # MHNN: Molecular Hypergraph Neural Networks
 
 [![arXiv](https://img.shields.io/badge/arXiv-2312.13136-b31b1b.svg)](https://arxiv.org/abs/2312.13136)
+[![DOI](https://img.shields.io/badge/DOI-10.1063/5.0193557-blue.svg)](https://doi.org/10.1063/5.0193557)
 
 Conventional graphs only model the pairwise connectivity in molecules, failing to adequately represent higher-order connections like multi-center bonds and conjugated structures. To tackle this challenge, we introduce molecular hypergraphs and propose Molecular Hypergraph Neural Networks (MHNN) to predict molecular optoelectronic properties, where hyperedges represent conjugated structures.
 
@@ -85,13 +86,16 @@ This work was supported as part of NCCR Catalysis (grant number 180544), a Natio
 ## 📝 Citation
 If you find our work useful, please consider citing it:
 ```bibtex
-@article{chen2023molecular,
-  author    = {Junwu Chen and Philippe Schwaller},
-  title     = {Molecular Hypergraph Neural Networks},
-  journal   = {arXiv},
-  volume    = {abs/2312.13136},
-  year      = {2023},
-  url       = {https://arxiv.org/abs/2312.13136}
+@article{chen2024molecular,
+  title={Molecular hypergraph neural networks},
+  author={Chen, Junwu and Schwaller, Philippe},
+  journal={The Journal of Chemical Physics},
+  volume={160},
+  number={14},
+  year={2024},
+  publisher={Aip Publishing},
+  doi={10.1063/5.0193557},
+  url={https://doi.org/10.1063/5.0193557},
 }
 ```
 
